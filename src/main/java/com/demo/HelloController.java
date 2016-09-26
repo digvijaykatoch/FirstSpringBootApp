@@ -63,18 +63,23 @@ public class HelloController {
 	@RequestMapping("/getActivities")
 	public List getActivities(String userId, String req){
 		List list=new ArrayList<>();
+		list.add("activity 1");
+		list.add("activity 2");
+		list.add("activity 3");
 		return list;
 	}
 
 	@RequestMapping("/getMenteeRequests")
-	public String menteeRequest(String userId, String req){
-		String str = "abc";
-		return str;
+	public List<User> menteeRequest(String userId, String req){
+		User usr1=new User("fname", "lname", "role", "school", "company", "prog", "intro", "pic", "terms", "sign", "parSign", 10000, "a@b.com", 1800, "skypeId", "performance", "P");
+		List<User> list = new ArrayList<>();
+		list.add(usr1);
+		return list;
 	}
 
 	@RequestMapping("/findMatch")
 	public User findMatch(String userId, String locale){
-		User user = new User();
+		User user = new User("fname", "lname", "role", "school", "company", "prog", "intro", "pic", "terms", "sign", "parSign", 10000, "a@b.com", 1800, "skypeId", "performance", "P");
 		return user;
 	}
 
