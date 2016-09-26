@@ -31,18 +31,26 @@ public class HelloController {
 	@RequestMapping("/listPrograms")
 	public List<Program> listPrograms(String userId, String req){
 		List<Program> list = new ArrayList<>();
+	    Program p1 = new Program("Program1","Institution1","Mentor1");
+	    Program p2 = new Program("Program2","Institution2","Mentor2");
+	    Program p3 = new Program("Program3","Institution3","Mentor3");
+	    list.add(p1);
+	    list.add(p2);
+	    list.add(p3);
 		return list;
 	}
 
 	@RequestMapping("/listInstitutions")
 	public List<Institutions> listInstitutions(String userId, String req){
 		List<Institutions> list = new ArrayList<>();
+		Institutions inst1 = new Institutions("Insti1", "parent1", "abc", "city1", "state1", 12345, 1800, "a@b.com");
+		list.add(inst1);
 		return list;
 	}
 
 	@RequestMapping("/GetCurrentProgram")
 	public Program currentProgram(String userId, String token){
-		Program prog= new Program();
+		Program prog= new Program("Program1", "Institution1", "Mentor1");
 		return prog;		
 	}
 
