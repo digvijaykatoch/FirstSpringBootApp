@@ -2,7 +2,10 @@ package com.demo;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,11 +64,12 @@ public class HelloController {
 	}
 
 	@RequestMapping("/getActivities")
-	public List getActivities(String userId, String req){
-		List list=new ArrayList<>();
-		list.add("activity 1");
-		list.add("activity 2");
-		list.add("activity 3");
+	public List<Activities> getActivities(String userId, String req){
+		List <Activities> list=new ArrayList<>();
+		Activities act1=new Activities(1, new Timestamp(new Date().getTime()), "action performed");
+		Activities act2=new Activities(1, new Timestamp(new Date().getTime()), "action performed 2");
+		list.add(act1);
+		list.add(act2);
 		return list;
 	}
 
@@ -86,18 +90,30 @@ public class HelloController {
 	@RequestMapping("/getGoals")
 	public List<Goals> getGoals(String userId, String req){
 		List<Goals> list = new ArrayList<>();
+		Goals goal1 = new Goals(1, 1, "Sub 1", "Getting it done",2, 25, "category", new Timestamp(0));
+		Goals goal2 = new Goals(2, 2, "Sub 2", "Getting it done again",3, 50, "category", new Timestamp(0));
+		list.add(goal1);
+		list.add(goal2);
 		return list;
 	}
 
 	@RequestMapping("/getTasks")
 	public List<Tasks> getTasks(String userId, String req){
 		List<Tasks> list = new ArrayList<>();
+		Tasks task1=new Tasks(1, 1, "description", 2, "taskAssignment", 0);
+		Tasks task2=new Tasks(2, 2, "description", 3, "taskAssignment", 1);
+		list.add(task1);
+		list.add(task2);
 		return list;
 	}
 
 	@RequestMapping("/getMeetings")
 	public List<Meetings> getMeetings(String userId, String req){
 		List<Meetings> list = new ArrayList<>();
+		Meetings meeting1=new Meetings(1, 1, new Timestamp(new Date().getTime()), new Timestamp(new Date().getTime()), "description");
+		Meetings meeting2=new Meetings(2, 2, new Timestamp(new Date().getTime()), new Timestamp(new Date().getTime()), "description2");
+		list.add(meeting1);
+		list.add(meeting2);
 		return list;
 	}
 
@@ -171,24 +187,38 @@ public class HelloController {
 	@RequestMapping("/getProgsByInstitution")
 	public List<Program> getProgsByInstitution(String instituteId){
 		List<Program> list = new ArrayList<>();
+		Program p1 = new Program("Program1","Institution1","Mentor1");
+	    Program p2 = new Program("Program2","Institution2","Mentor2");
+	    Program p3 = new Program("Program3","Institution3","Mentor3");
+	    list.add(p1);
+	    list.add(p2);
+	    list.add(p3);
 		return list;		
 	}
 
 	@RequestMapping("/getAllMentorsOrMentees")
 	public List<User> getAll(String userType){
 		List<User> list = new ArrayList<>();
+		User usr1=new User("fname", "lname", "role", "school", "company", "prog", "intro", "pic", "terms", "sign", "parSign", 10000, "a@b.com", 1800, "skypeId", "performance", "P");
+		User usr2=new User("fname", "lname", "role", "school", "company", "prog", "intro", "pic", "terms", "sign", "parSign", 10000, "a@b.com", 1800, "skypeId", "performance", "P");
+		User usr3=new User("fname", "lname", "role", "school", "company", "prog", "intro", "pic", "terms", "sign", "parSign", 10000, "a@b.com", 1800, "skypeId", "performance", "P");
+		list.add(usr1);
+		list.add(usr2);
+		list.add(usr3);
 		return list;		
 	}
 
 	@RequestMapping("/getAllMentByInsti")
 	public List<User> getAllMentByInsti(String userId, String userType, String instiution){
 		List<User> list = new ArrayList<>();
+		User usr1=new User("fname", "lname", "role", "school", "company", "prog", "intro", "pic", "terms", "sign", "parSign", 10000, "a@b.com", 1800, "skypeId", "performance", "P");
+		list.add(usr1);
 		return list;		
 	}
 
 	@RequestMapping("/getUser")
 	public User getUser(String req){
-		User user=new User();
+		User user=new User("fname", "lname", "role", "school", "company", "prog", "intro", "pic", "terms", "sign", "parSign", 10000, "a@b.com", 1800, "skypeId", "performance", "P");
 		return user;		
 	}
 
@@ -205,9 +235,15 @@ public class HelloController {
 	}
 
 	@RequestMapping("/getCalByInsti")
-	public List<User> getCalByInsti(String userId, String instiution){
-		List<User> list = new ArrayList<>();
-		return list;		
+	public List<Calendar> getCalByInsti(String userId, String instiution){
+		List<Calendar> list = new ArrayList<>();
+		Calendar cal1 = Calendar.getInstance();
+        cal1.set(Integer.parseInt("2016"), Integer.parseInt("12") - 1, Integer.parseInt("25"));
+        Calendar cal2 = Calendar.getInstance();
+        cal2.set(Integer.parseInt("2016"), Integer.parseInt("12") - 1, Integer.parseInt("29"));
+		list.add(cal1);
+		list.add(cal2);
+        return list;		
 	}
 
 }
